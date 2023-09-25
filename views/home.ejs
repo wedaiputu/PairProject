@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STORE</title>
+    <br>
+    <%- include('_navbar.ejs') %>
+    <%- include('_style.ejs') %>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body >
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <h1 class="navbar-menu" class="text-3xl font-bold underline">
+            <a style="text-align: center; font-size: 34px;">BETAMIDI CMS</a>
+        </h1>
+    </div>
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <table class="table-auto" style="border: 1px;">
+            <thead>
+              <tr style="text-align: center">
+                <th>Name</th>
+                <th>Code</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result.forEach((el) => { %>
+              <tr style="text-align: center;">
+                <td><%= el.name %></td>
+                <td><%= el.code %></td>
+                <td><%= el.location %></td>
+                <td><%= el.category %></td>
+                <td><button class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">See Table</button></td>
+              </tr>
+              <% }); %>
+            </tbody>
+        </table>
+    </div>
+    
+
+
+</body>
+</html>
