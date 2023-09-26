@@ -209,7 +209,7 @@ class Controller {
                 const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
                 const templateDate = `${year}-${month}-${day}`
                 res.render("employeeEditForm",{result, templateDate, errors})
-                //res.send(result)
+                //res.send(result,"<<<<<<<<<<")
             })
             .catch((err) => {
                 console.log(err);
@@ -227,8 +227,10 @@ class Controller {
             { where: {id: +employee}}
         )
             .then(() => {
+                //res.send('TESTSssssssss')
                 res.redirect(`/Store/${storeData}`);
             })
+            //
             .catch((err) => {
                 if (err.name === "SequelizeValidationError") {
                     err = err.errors.map((el) => {
