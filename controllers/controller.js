@@ -246,15 +246,15 @@ class Controller {
 
     static employeeDelete(req,res){
         const { storeData,employeeId } = req.params;
-        let deletedEmployeeFullName;
+        let deletedEmployee;
         Employee.findByPk(+employeeId)
           .then((result) => {
-            deletedEmployeeFullName = `${result.firstName} ${result.lastName}` 
+            deletedEmployee = `${result.firstName} ${result.lastName}` 
             return Employee.destroy({ where: { id: +employeeId } });
           })
           .then((del) => {
             //res.send(del)
-            res.redirect(`/stores/${storeData}?alert=${deletedEmployeeFullName}`);
+            res.redirect(`/stores/${storeData}?alert=${deletedEmployee}`);
           })
           .catch((err) => {
             console.log(err);

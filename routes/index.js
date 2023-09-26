@@ -16,6 +16,7 @@ router.post('/stores/:storeId/employees/add', Controller.employeePostAdd)
 router.get('/stores/:storeId/employees/:employeeId/edit', Controller.employeeEditForm)
 router.post('/stores/:storeId/employees/:employeeId/edit', Controller.employeePostEdit)
 router.get('/stores/:storeId/employees/:employeeId/delete', Controller.employeeDelete)
+// router.get('/stores/:storeId/delete', Controller.employeeDelete)
 
 
 

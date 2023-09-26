@@ -45,17 +45,17 @@
         </thead>
     
         <tbody>
-        <% storeFind.Employees.forEach(element => { %>
+        <% storeFind.Employees.forEach(el => { %>
             <tr style="text-align: center;">
-                <td><%=element.firstName%></td>
-                <td><%=element.lastName%></td>
-                <td><%=element.ageData%></td>
-                <td><%=element.education%></td>
-                <td><%=element.position%></td>
-                <td><%=element.dataValues.formatSalary%></td>
+                <td><%=el.firstName%></td>
+                <td><%=el.lastName%></td>
+                <td><%=el.ageData%></td>
+                <td><%=el.education%></td>
+                <td><%=el.position%></td>
+                <td><%=el.dataValues.formatSalary%></td>
                 <td>
-                    <a href="/stores/<%=storeFind.id%>/employees/<%=element.id%>/edit">Edit</a>
-                    <a href="/stores/<%=storeFind.id%>/employees/<%=element.id%>/delete">Delete</a>
+                    <a href="/stores/<%=storeFind.id%>/employees/<%=el.id%>/edit" style="text-decoration: none; color: #007bff; margin: 10px;">Edit</a>
+                    <a href="/stores/<%=storeFind.id%>/employees/<%=el.id%>/delete" style="text-decoration: none; color: #007bff; margin: 10px;">Delete</a>
                 </td>
             </tr>
             <% }); %>
