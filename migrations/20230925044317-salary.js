@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up (queryInterface, Sequelize) {
-    return queryInterface.addColumn("Employees", "salary", {
+    return queryInterface.addColumn("employees", "salary", {
       type : Sequelize.DataTypes.INTEGER
     })
     /**
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn("Employees", "salary")
+    return queryInterface.removeColumn("employees", "salary")
     /**
      * Add reverting commands here.
      *

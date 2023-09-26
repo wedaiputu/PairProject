@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETAMIDI</title>
+    <br>
+    <%- include('_style.ejs') %> 
+</head>
+
+<body>
+    <%- include('_navbar.ejs') %>
+    <br>
+    <div class="containerForm" style="justify-items: center;">
+        <h1 style="font-size: large;">Edit Employee</h1>
+        <h3>Store Name : <%= result.Store.name %> </h3>
+
+        <% if (errors) { %>
+            <% errors.split(';').forEach((el) => { %>
+                <p style="color: red"><%= el %></p>
+            <% }) %>
+        <% } %>
+            
+        <form action="" method="post">
+            
+            <div class="input-group">
+                <div class="nameInput">
+                    <label>First Name </label><br>
+                    <input type="text" name="firstName" value="<%= result.firstName %>"><br>
+                    <label>Last Name</label><br>
+                    <input type="text" name="lastName" value="<%= result.lastName  %>"><br>
+                    <label>Date of Birth</label><br>
+                    <input type="date" name="dateOfBirth" value="<%= templateDate  %>"><br>
+                    <label>Education</label><br>
+                    <select name="education">
+                        <option disabled selected>Select Education</option>
+                        <% const education= ["SMA","S1","S2","S3"] %>
+                        <% education.forEach(element =>{ %>
+                            <option value="<%=element%>" <%= element == result.education ? 'selected' : '' %>><%=element%></option>
+                        <% })%>
+                    </select><br>
+                </div>
+            </div>
+                
+            <div class="input-group">
+                <div class="nameInput">
+                    <p>Position:</p>
+                    <% const position=["Staff","Supervisor","Manager","CEO"] %>
+                    <% position.forEach(el => { %>
+                        <input type="radio" name="position" value="<%=el%>" <%= el == result.position ? 'checked' : '' %>>
+                        <label><%=el%></label>
+                    <% }) %>
+                    <br>
+                </div>
+            </div>   
+
+            <div class="input-group">
+                <div class="nameInput">
+                    <select name="education">
+                        <br>
+                        <label>Salary</label><br>
+                        <input type="number" name="salary" value="<%=result.salary %>"><br>
+                        <button type="submit" value="edit employee">Edit Employee</button>
+                    </select>
+                </div>
+            </div>
+        <br>
+
+        <div class="input-group">
+            <p>Position:</p>
+            <% const position=["Staff","Supervisor","Manager","CEO"] %>
+            <% position.forEach(el => { %>
+                <input type="radio" name="position" value="<%=el%>">
+                <label><%=el%></label>
+            <% }) %>
+        </div>
+        <br>
+            
+        <label>Salary</label><br>
+        <input type="number" name="salary">
+        <br>
+        <br>
+        <button type="submit" value="add employee">Add Employee</button>
+        </form>
+
+    </div>
+</body>
+</html>

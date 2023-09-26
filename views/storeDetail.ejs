@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Add New Art</title>
+  <%- include('_style.ejs') %>
+
+</head>
+
+<body>
+  <%- include ('_navbar') %>
+<div class="navbar-container" style="display: flex; justify-content: center; align-items: center;">        
+     <div class="navbar-menu">
+        <% if (alert) { %>
+            <p style="color: red">
+        <%=alert%> removed
+            </p>
+        <% } %>    
+        <h1><%= storeFind.name %></h1>
+        <h3>Code : <%= storeFind.code %></h3>
+        <% if (storeFind.Employees.length < 1) { %>
+        <p>There is no employee yet</p>
+        <% } %>
+        <p>Employee Fee : <%= storeFind.Employees.length >= 1 ? `${employeeSalary}` : '-' %></p>
+    </div>
+</div>
+
+<div class="navbar" style="display: flex; justify-content: center; align-items: center;">
+    <p>Click <a href="/stores/<%= storeFind.id %>/employees/add">here</a> to add an employee</p>
+<% if (storeFind.Employees.length >= 1) { %>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <table>
+        <thead>
+            <tr style="text-align: center">
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+              <th>Education</th>
+              <th>Position</th>
+              <th>Salary</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+        <% storeFind.Employees.forEach(element => { %>
+            <tr style="text-align: center;">
+                <td><%=element.firstName%></td>
+                <td><%=element.lastName%></td>
+                <td><%=element.ageData%></td>
+                <td><%=element.education%></td>
+                <td><%=element.position%></td>
+                <td><%=element.dataValues.formatSalary%></td>
+                <td>
+                    <a href="/stores/<%=storeFind.id%>/employees/<%=element.id%>/edit">Edit</a>
+                    <a href="/stores/<%=storeFind.id%>/employees/<%=element.id%>/delete">Delete</a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+      <% } %>
+</div>
+
+</body>
+</html>

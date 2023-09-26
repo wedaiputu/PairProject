@@ -1,0 +1,47 @@
+[
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "dateOfBirth": "1990-05-15",
+      "education": "Bachelor's Degree",
+      "position": "Manager",
+      "StoreId": 1,
+      "Salary": 10000000
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "dateOfBirth": "1988-08-25",
+      "education": "Master's Degree",
+      "position": "Assistant Manager",
+      "StoreId": 1,
+      "Salary": 8000000
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Johnson",
+      "dateOfBirth": "1995-12-10",
+      "education": "Bachelor's Degree",
+      "position": "Sales Representative",
+      "StoreId": 3,
+      "Salary": 8000000
+    },
+    {
+        "firstName": "Narto",
+        "lastName": "Susuke",
+        "dateOfBirth": "1991-05-15",
+        "education": "Bachelor's Degree",
+        "position": "Staff",
+        "StoreId": 1,
+        "Salary": 5000000
+      },
+      {
+        "firstName": "Epen",
+        "lastName": "Jeager",
+        "dateOfBirth": "1990-05-15",
+        "education": "Bachelor's Degree",
+        "position": "Staff",
+        "StoreId": 1,
+        "Salary": 5000000
+      }
+  ]

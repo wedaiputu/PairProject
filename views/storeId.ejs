@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Add New Art</title>
+  <%- include('_style.ejs') %>
+
+</head>
+<body>
+  <%- include ('_navbar') %>
+  <br>
+    <div class="navbar-container" style="display: flex; justify-content: center; align-items: center;">        
+      <div class="navbar-menu">
+        <h1 style="font-size: large; font-size: 35px;"> <%=result.name %></h1>
+        
+        <h2 style="font-size: large; font-size: 30px;">Code: <%=result.code %></h2>
+        
+      </div> 
+    </div> 
+    <div class="navbar" style="display: flex; justify-content: center; align-items: center;">
+      <p>Click <a href="employeesAdd">Here</a> to Add New Employee</p>
+    </div>
+          
+     
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <table>
+          <thead>
+            <tr style="text-align: center">
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+              <th>Education</th>
+              <th>Position</th>
+              <th>Salary</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% result.Employees.forEach((el) => { %>
+              <tr style="text-align: center;">
+                <td><%= el.firstName %></td>
+                <td><%= el.lastName %></td>
+                <td><%= el.ageData %></td>
+                <td><%= el.position %></td>
+                <td><%= el.position %></td>
+                <td><%= el.salary %></td>
+                <td><a href="">edit</a> <br>  <a href="">delete</a> 
+                  
+                  
+                </tr>
+                <% }) %>
+
+          </tbody>
+      </table>
+  </div>
+       
+        <br>
+    <br>
+</body>
+</html>
