@@ -245,7 +245,7 @@ class Controller {
     }
 
     static employeeDelete(req,res){
-        const { storeData,employeeId } = req.params;
+        const { storeId,employeeId } = req.params;
         let deletedEmployee;
         Employee.findByPk(+employeeId)
           .then((result) => {
@@ -254,7 +254,7 @@ class Controller {
           })
           .then((del) => {
             //res.send(del)
-            res.redirect(`/stores/${storeData}?alert=${deletedEmployee}`);
+            res.redirect(`/stores/${storeId}?alert=${deletedEmployee}`);
           })
           .catch((err) => {
             console.log(err);
