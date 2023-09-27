@@ -2,8 +2,8 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up (queryInterface, Sequelize) {
-    return queryInterface.addColumn("employees", "salary", {
+  async up (queryInterface, Sequelize) {
+    return queryInterface.addColumn("Cars", "price", {
       type : Sequelize.DataTypes.INTEGER
     })
     /**
@@ -14,8 +14,9 @@ module.exports = {
      */
   },
 
-  down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn("employees", "salary")
+  async down (queryInterface, Sequelize) {
+    return queryInterface.removeColumn("Cars", "price")
+
     /**
      * Add reverting commands here.
      *
@@ -24,3 +25,5 @@ module.exports = {
      */
   }
 };
+
+// npx sequelize-cli model:generate --name rentCars --attributes userId:string,carId:string

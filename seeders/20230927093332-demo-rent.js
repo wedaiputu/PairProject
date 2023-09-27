@@ -3,14 +3,13 @@ const fs = require('fs')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up (queryInterface, Sequelize) {
-    let data = JSON.parse(fs.readFileSync('./data/stores.json')).map((el)=>{
+  async up (queryInterface, Sequelize) {
+    let data = JSON.parse(fs.readFileSync('./data/rents.json')).map((el)=>{
       el.createdAt = new Date();
       el.updatedAt = new Date()
       return el
     })
-
-    return queryInterface.bulkInsert('Stores',data);
+    return queryInterface.bulkInsert('Rents',data);
     /**
      * Add seed commands here.
      *
@@ -20,16 +19,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-
   },
 
-  down (queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete('Stores', null, {});
+    return queryInterface.bulkDelete('Rents', null, {});
   }
 };

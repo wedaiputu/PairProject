@@ -1,7 +1,7 @@
 <style>
     body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to left, rgb(193, 236, 241), #ffffff, #ffffff , #ffffff, #f5f0f0,#ffffff, #b2d7e7);
+            background: linear-gradient(to left, rgb(76, 82, 83), #ffffff, #ffffff , #ffffff, #f5f0f0,#ffffff, #535657);
             margin: 0;
             padding: 0;
             display:flexbox;
@@ -40,15 +40,22 @@
         }
 
         /* MEWARNAI TABEL   */
-        table, td, th {  
-            border: 3px solid #0b0b0b;
-            text-align: left;
+        .table {
+            display: flexbox;
+            border-collapse: collapse;
+            margin: 20px auto;
         }
 
-        table {
-            border-collapse: collapse;
-            background: linear-gradient(to left, rgb(218, 234, 243), #f8f9fa, #fefffd, #fafaf9, #f9fafa);
-            width: 85%;
+        .table {
+            display: flex; /* Use flexbox for horizontal alignment */
+            margin: 20px auto;
+        }
+
+        .table-cell {
+            flex: 1; /* Distribute available space equally */
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
         }
 
         th, td {
@@ -133,7 +140,7 @@
     .navbar-menu a {
         text-decoration: none;
         font-size: 18px;
-        margin: 0 20px;
+        margin: 0 10px;
         color: #333;
         transition: all 0.3s ease;
     }
@@ -167,4 +174,16 @@
             animation: spin 1s linear infinite; 
         }
     */
+
+
+
+    
+
+        
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
 </style>

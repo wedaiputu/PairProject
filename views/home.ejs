@@ -3,46 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORE</title>
-    <br>
-    <%- include('_navbar.ejs') %>
-    <%- include('_style.ejs') %>
+    <title>SEWA AMBULANCE</title>
+    <%- include('_style2')  %>
    
 </head>
-<body >
-    <br>
-    <div style="display: flex; justify-content: center;">
-        <h1 class="navbar-menu" class="text-3xl font-bold underline">
-            <a style="text-align: center; font-size: 34px;">BETAMIDI CMS</a>
-        </h1>
-    </div>
-    
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <table>
-            <thead>
-              <tr style="text-align: center">
-                <th>Name</th>
-                <th>Code</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% result.forEach((el) => { %>
-              <tr style="text-align: center;">
-                <td><%= el.name %></td>
-                <td><%= el.code %></td>
-                <td><%= el.location %></td>
-                <td><%= el.category %></td>
-                <td><a href="/stores/<%= el.id %>" class="action" style="text-decoration: none; color: #007bff; margin: 10px;">See Details</a></td>
-              </tr>
-              <% }); %>
-            </tbody>
-        </table>
-    </div>
-    
+<body>
+    <h1 class="navbar-menu text-3xl font-bold underline">
+        <a style="text-align: center; font-size: 34px;">SEWA AMBULANCE</a>
+    </h1>
 
-
+    <div class="container">
+        <div class="table">
+            <div class="table-cell">
+                <img class="img-container" src="https://mawrent.com/wp-content/uploads/2022/11/sewa-brio-di-bali.jpg" alt="">
+                <p>Price: $XX.XX</p>
+                <a href="#">Book Now</a>
+            </div>
+            <div class="table-cell">
+                <img class="img-container" src="https://mawrent.com/wp-content/uploads/2022/11/sewa-swift-di-bali.jpg" alt="">
+                <p>Price: $XX.XX</p>
+                <a href="#">Book Now</a>
+            </div>
+            <div class="table-cell">
+                <img class="img-container" src="https://mawrent.com/wp-content/uploads/2022/11/sewa-innova-reborn-di-bali.jpg" alt="">
+                <p>Price: $XX.XX</p>
+                <a href="#">Book Now</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,23 @@
+[
+    {
+        "type": "city car",
+        "name": "sampurna",
+        "CategoryId": "1"
+        
+    },
+    {
+        "type": "mini bus",
+        "name": "pickup",
+        "CategoryId": "2"
+    },
+    {
+        "type": "city car",
+        "name": "propeler",
+        "CategoryId": "2"
+    },
+    {
+        "type": "mini bus",
+        "name": "marlboro",
+        "CategoryId": "1"
+    }
+  ]

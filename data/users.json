@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Hasan",
+        "email": "hasan@hasan.com",
+        "password": "hasan1",
+        "role": "Penyewa"  
+    },
+    {
+        "name": "Hasan2",
+        "email": "hasan2@hasan.com",
+        "password": "hasan12",
+        "role": "Penyewa"
+    },
+    {
+        "name": "Hasan3",
+        "email": "hasan@hasan.com",
+        "password": "hasanLagi",
+        "role": "Penyewa"
+    }
+   
+  ]
