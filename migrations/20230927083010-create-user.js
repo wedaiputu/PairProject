@@ -15,11 +15,24 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
-      },
       role: {
         type: Sequelize.STRING
+      },
+      Duration: {
+        type: Sequelize.INTEGER
+      },
+      PhoneNumber: {
+        type: Sequelize.STRING
+      },
+      userId:{
+        type: Sequelize.STRING
+      },
+      AdminsId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Admins",
+          key: 'id'
+        }
       },
       
       createdAt: {

@@ -1,35 +1,45 @@
 const { Model } = require('sequelize')
-const { Store, Employee, sequelize } = require('../models')
+const { Car, User, Categoris, rent, sequelizem, Admin } = require('../models')
 const { Op } = require("sequelize");
-const convertSalary = require('../helper/convertSalary');
+const priceHelper = require('../helper/priceHelper');
+// const bcrypt = require('bcryptjs')
 
 
 
 
 class Controller {
-    static home(req, res) {
-        Store.findAll()
+    static showCars(req, res) {
+        Car.findAll()
             .then((result) => {
-                res.render("home", { result })
+                res.render("showCars", { result })
             })
         // console.log('>>>><<<<<<');
-        const { position } = req.query;
+        const { type } = req.query;
         let option = {};
 
-        if (position) {
+        if (type) {
             option.where = {
-                position: position,
+                type: type,
             };
         }
     }
-    static addStore(req, res) {
-        //case jika tidak butuh data
-        res.render("addStore")
+
+    static showDataForAdmin(req, res){
+       User.findAll(req.body)
+       .then((result)=>{
+        res.render('adminPage', {result})
+       })
     }
-    static postAddStore(req, res) {
-        Store.create(req.body)
+
+    static usersBook(req, res) {
+        //case jika tidak butuh data
+        res.render("usersBook")
+    }
+    static postUsersBook(req, res) {
+        User.create(req.body)
             .then((result) => {
-                res.redirect('/');
+                console.log(result)
+                res.redirect('/usersBook');
             })
             .catch((err) => {
                 console.log(err);
@@ -38,170 +48,98 @@ class Controller {
         // res.send(req.body)
     }
 
-    static employee(req, res) {
-        //case jika tidak butuh data
-        const { position } = req.query
-        let option = {
-            include: [Store]
-        }
 
-
-        
-        if (position) {
-            option.where = {
-                position:{
-                    [Op.iLike]: `%${position}%`
-                }
-            }
-        }
-        
-        
-
-        Employee.findAll(option)
-            .then((result) => {
-                // console.log(result, ">>>>");
-                // res.send(result[0])
-
-                res.render('employees', { result })
-            })
-            
-
-
-            .catch((err) => {
-                // console.log(err);
-                res.send(err);
-            });
-
+    static adminPage(req, res){
+        // Admin.findAll()
+        // .then((result)=>{
+            res.render('loginFormAdmin', {})
+        // })
+        // .catch((err)=>{
+        //     res.send(err)
+        // })
     }
 
-    static employeesPosition(req, res) {
-        const { id } = req.params
-        Store.findByPk(+id)
-            .then((result) => {
-                res.render("employees", { result })
-            })
-            .catch((err) => {
-                console.log(err);
-                res.send(err)
-            })
-    }
-
-
-
-    static storeDetail(req, res){
-        const {storeId} = req.params
-
-        // console.log(storeId);
-
-        const { position } = req.query
-        let option = {
-            include: [Employee]
-            
-        }
-
-        Store.findByPk(+storeId, option)
-
+    static listUser(req, res){
+        User.findAll()
+        .then((result) => {
             // res.send(result)
-        .then((result) => {
-
-            res.render("storeDetail",{result})
+            console.log(result);
+            res.render('adminPage', {result})
+        
+            
         })
 
-        .catch((err)=>{
-            console.log(err);
+        .catch((err) => {
             res.send(err)
         })
     }
 
-    static storeDetail(req,res){
-        const { storeId } = req.params;  //dari nama routernya
-        const { alert }  = req.query
-        let option = {
-            include: [{ 
-                model : Employee,
-                order: [["firstName","ASC"],["lastName","ASC"]],
-                }],
-            where: {id: +storeId}
-        }
-        let storeFind;
-        Store.findOne(option) 
-        .then((result) => {
-            storeFind = result
-            result.Employees.forEach(el =>{
-                el.dataValues.formatSalary = convertSalary(el.dataValues.salary)
-                el.dataValues.age = el.Age
-            }) 
-            return Employee.findOne({where: {StoreId : +storeId}, attributes : [[sequelize.fn("SUM", sequelize.col('salary')), 'totalSalary']] })
-        })
-        .then((totalSalary) =>{
-            //console.log(totalSalary);
-            let employeeSalary = convertSalary(+totalSalary.dataValues.totalSalary)
-            res.render("storeDetail", {storeFind, employeeSalary, alert})
-        })
-        .catch((err) => {
-            console.log(err);
-            res.send(err)
-        })
+    static registerForm(req, res){
+        res.render('registerForm')
     }
-        //case jika tidak butuh data
-        // res.send('test<<<<<<<')
-        //storee inckude emloyee, store gunakan findOne, id req.params, render, kirim ke ejs.
-
-    static employeeAdd(req,res){
-        const { errors } = req.query;
-        const { storeId } = req.params; 
-        let option = {
-            where: {id: +storeId}
-        }
-        Store.findOne(option)
-        .then((result) => {
-            res.render("addEmployee",{result,errors})
-        })
-        .catch((err) => {
-            console.log(err);
-            res.send(err)
-        })
+    static loginForm(req, res){
+        res.render('loginFormAdmin')
     }
+    static registerPost(req, res){
+        const { name, email, password , role} = req.body;
+        // console.log(req.body)
+        // Profile.create
+        Admin.create({
+            username: name,
+            email: email,
+            password: password ,
+            role: role
+        })
+        .then(result => {
 
-    static employeePostAdd(req,res){
-        const { storeId } = req.params; 
-        const { firstName,lastName,dateOfBirth,education,position,salary } = req.body
-        Employee.create({ 
-            firstName,
-            lastName,
-            dateOfBirth,
-            education,
-            position,
-            StoreId : storeId,salary 
+            // sendRegistrationEmail(user.email);
+            res.redirect('/adminPage', {result});
         })
-        .then((result) => {
-            res.redirect(`/stores/${storeId}`)
-        })
-        .catch((err) => {
-            if (err.name === "SequelizeValidationError") {
-                err = err.errors.map((el) => {
-                    return el.message
-                })
-                res.redirect(`/stores/${storeId}/employees/add?errors=${err.join(';')}`)
-            }else{
-                //console.log(err);
-                res.send(err)
+        .catch(err => {
+            if (err.name === 'SequelizeUniqueConstraintError') {
+                res.render('adminPage', { error: 'Username atau email sudah ada. Silakan pilih yang lain.' });
+            }  else {
+                res.render('adminPage', { error: 'Terjadi kesalahan saat pendaftaran.' });
+                console.error(err);
             }
-        })
-    }
+            
+        });
+      }
 
-    static employeeEditForm(req,res){
+      static loginPost(req, res){
+        const { name, password } = req.body;
+        Admin.findOne({ where: { name } })
+        .then(admin => {
+            if (!admin) {
+                throw new Error('User not found');
+            }
+            return admin.isValidPassword(password);
+        })
+        .then(isMatch => {
+            if (!isMatch) {
+                throw new Error('Password is incorrect');
+            }
+             req.session.isAuthenticated = true;
+            res.redirect('/admins');
+        })
+        .catch(err => {
+            res.render('registerForm', { error: err.message });
+            // console.log(err)
+        });
+      }
+
+      static userEditForm(req,res){
         const { errors } = req.query;
-        const { storeId, employeeId } = req.params;
+        const { userId, employeeId } = req.params;
         let option = {
             include: {
-              model: Store,
-              where: {id: +storeId}
+              model: ser,
+              where: {id: +userId}
             }
         }
 
         option.where = {id: +employeeId}
-        Employee.findOne(option)
+        Car.findOne(option)
             .then((result) => {
                 const date = new Date(result.dateOfBirth); 
                 const year = date.getFullYear();
@@ -218,13 +156,13 @@ class Controller {
     }
 
 
-    static employeePostEdit(req,res){
+    static usersPostEdit(req,res){
         const { firstName,lastName,dateOfBirth,education,position,salary } = req.body
-        const { storeData,employee } = req.params;
+        const { storeData,Car } = req.params;
 
-        Employee.update(
+        Car.update(
             { firstName,lastName,dateOfBirth,education,position,salary },
-            { where: {id: +employee}}
+            { where: {id: +Car}}
         )
             .then(() => {
                 //res.send('TESTSssssssss')
@@ -236,7 +174,7 @@ class Controller {
                     err = err.errors.map((el) => {
                         return el.message
                     })
-                    res.redirect(`/stores/${storeData}/employees/${employee}/edit?errors=${err.join(';')}`)
+                    res.redirect(`/stores/${storeData}/employees/${Car}/edit?errors=${err.join(';')}`)
                 }else{
                     //console.log(err);
                     res.send(err)
@@ -244,17 +182,17 @@ class Controller {
             })
     }
 
-    static employeeDelete(req,res){
-        const { storeId,employeeId } = req.params;
+    static userDelete(req,res){
+        const { userId,employeeId } = req.params;
         let deletedEmployee;
-        Employee.findByPk(+employeeId)
+        Car.findByPk(+employeeId)
           .then((result) => {
             deletedEmployee = `${result.firstName} ${result.lastName}` 
-            return Employee.destroy({ where: { id: +employeeId } });
+            return Car.destroy({ where: { id: +employeeId } });
           })
           .then((del) => {
             //res.send(del)
-            res.redirect(`/stores/${storeId}?alert=${deletedEmployee}`);
+            res.redirect(`/stores/${userId}?alert=${deletedEmployee}`);
           })
           .catch((err) => {
             console.log(err);
@@ -262,6 +200,37 @@ class Controller {
           });
     }
 
+    static usersDetail(req,res){
+        const { userId } = req.params;  //dari nama routernya
+        const { alert }  = req.query
+    
+        let option = {
+            include: [{ 
+                model : Admin,
+                order: [["firstName","ASC"],["lastName","ASC"]],
+                }],
+            where: {id: +userId}
+        }
+        let userFind;
+        User.findOne(option) 
+        .then((result) => {
+            userFind = result
+            result.Employees.forEach(el =>{
+                el.dataValues.priceHelper = priceHelper(el.dataValues.price)
+                el.dataValues.car = el.car
+            }) 
+            return Car.findOne({where: {userId : +userId}, attributes : [[sequelize.fn("SUM", sequelize.col('price')), 'totalPrice']] })
+        })
+        .then((totalSalary) =>{
+            //console.log(totalSalary);
+            let priceHelper = priceHelper(+totalPrice.dataValues.totalPrice)
+            res.render("adminPage", {userFind, employeeSalary, alert})
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send(err)
+        })
+    }
 
 }
 

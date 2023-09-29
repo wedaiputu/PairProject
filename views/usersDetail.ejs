@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betamidi</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+</head>
+<body>
+   
+    <% if (alert) { %>
+        <p style="color: red">
+          <%=alert%> removed
+        </p>
+        <% } %>  
+    <h1><%= userFind.name %></h1>
+    <h3>Code : <%= userFind.code %></h3>
+    <% if (userFind.cars.length < 1) { %>
+     <p>There is no employee yet</p>
+    <% } %>
+    <p>Click <a href="/users/<%= storeFind.id %>/cars/add">here</a> to add an employee</p>
+    <h4>Employee Fee : <%= storeFind.Employees.length >= 1 ? `${employeeFee}` : '-' %></h4>
+    <% if (storeFind.Employees.length >= 1) { %>
+    <table>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Education</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Action</th>
+        </tr>
+
+        <% userFind.Employees.forEach(element => { %>
+            <tr>
+                <td><%=element.firstName%></td>
+                <td><%=element.lastName%></td>
+                <td><%=element.dataValues.age%></td>
+                <td><%=element.education%></td>
+                <td><%=element.position%></td>
+                <td><%=element.dataValues.formatSalary%></td>
+                <td>
+                    <a href="/users/<%=storeFind.id%>/cars/<%=element.id%>/edit">Edit</a>
+                    <a href="/users/<%=storeFind.id%>/cars/<%=element.id%>/delete">Delete</a>
+                </td>
+            </tr>
+            <% }); %>
+      </table>
+      <% } %>
+</body>
+</html>

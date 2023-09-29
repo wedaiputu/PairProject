@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMBULANCE Reservation Form</title>
+    <style>
+        /* Add your CSS styles here */
+        /* This is just for basic styling, you can enhance it as needed */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HASAN Reservation</h1>
+        <form action="/users/add" method="post">
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" >
+            </div>
+            <div class="form-group">
+              <label for="email">Users Id:</label>
+              <input type="Text" id="UsersId" name="text" >
+          </div>
+          <div class="form-group">
+            <label for="destination">Domisily:</label>
+            <select id="destination" name="destination" >
+                <option value="Daily"> WNA</option>
+                <option value="Monthly">WNI</option>
+                <!-- Add more destination options as needed -->
+            </select>
+        </div>
+            <div class="form-group">
+                <label for="destination">Duration:</label>
+                <select id="destination" name="destination" >
+                    <option value="Daily"> Daily</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Else">Else</option>
+                    <!-- Add more destination options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="departure_date">Departure Date:</label>
+                <input type="date" id="departure_date" name="departure_date" >
+            </div>
+            <div class="form-group">
+                <label for="return_date">Return Date:</label>
+                <input type="date" id="return_date" name="return_date" >
+            </div>
+            <button type="submit" value="add Users">Submit Reservation</button>
+        </form>
+    </div>
+</body>
+</html>

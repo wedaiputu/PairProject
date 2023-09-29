@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STORE</title>
+    <br>
+    <%- include('_navbar.ejs') %>
+    <%- include('_style.ejs') %>
+   
+</head>
+<body >
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <h1 class="navbar-menu" class="text-3xl font-bold underline">
+            <a style="text-align: center; font-size: 34px;">Guest List</a>
+        </h1>
+    </div>
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <table>
+            <thead>
+              <tr style="text-align: center">
+                <th>Name</th>
+                <th>email</th>
+                <th>Phone Number</th>
+                <th>Duration</th>
+                <th>userId</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                    <% result.forEach(element => { %>
+                     <%= console.log(element);  %>
+                     <tr>
+                         <td><%= element.name %></td>
+                         <td><%= element.email %></td>
+                         <td><%= element.PhoneNumber %></td>
+                         <td><%= element.Duration %></td>
+                         <td><%= element.userId %></td>
+                         <td><%= element.Action %></td>
+                         
+                     </tr>
+                    <% }) %>
+
+            </tbody>
+        </table>
+    </div>
+    
+
+
+</body>
+</html>

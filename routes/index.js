@@ -4,18 +4,28 @@ const router = express.Router()
 
 
 
-router.get('/', Controller.home)
+router.get('/', Controller.showCars)
+router.get('/admins', Controller.adminPage)
+router.post('/admins', Controller.loginPost)
+router.get('/showDataForAdmin', Controller.showDataForAdmin)
+router.get('/admin', Controller.usersDetail)
+router.get('/users/:usersId', Controller.usersDetail)
 
+// //cars, 
 
-router.get('/stores/add', Controller.addStore)
-router.post('/stores/add', Controller.postAddStore)
-router.get('/employees', Controller.employee)
-router.get('/stores/:storeId', Controller.storeDetail)
-router.get('/stores/:storeId/employees/add', Controller.employeeAdd)
-router.post('/stores/:storeId/employees/add', Controller.employeePostAdd)
-router.get('/stores/:storeId/employees/:employeeId/edit', Controller.employeeEditForm)
-router.post('/stores/:storeId/employees/:employeeId/edit', Controller.employeePostEdit)
-router.get('/stores/:storeId/employees/:employeeId/delete', Controller.employeeDelete)
+// router.get('/usersBook', Controller.usersBook)
+// router.post('/users/add', Controller.postUsersBook)
+// router.get('/usersBook', Controller.usersBook)
+
+// // router.get('/admins', Controller.loginForm)
+// router.get('/adminsRegister', Controller.registerForm)
+// router.post('/adminsRegister', Controller.registerPost)
+// router.get('/cars/:carsId', Controller.rentsDetail)
+// router.get('/cars/:carsId/users/add', Controller.carsAdd)
+// router.post('/stores/:storeId/employees/add', Controller.userAddPost)
+// router.get('/stores/:storeId/employees/:employeeId/edit', Controller.userEditForm)
+// router.post('/stores/:storeId/employees/:employeeId/edit', Controller.userFormPost)
+// router.get('/stores/:storeId/employees/:employeeId/delete', Controller.employeeDelete)
 // router.get('/stores/:storeId/delete', Controller.employeeDelete)
 
 

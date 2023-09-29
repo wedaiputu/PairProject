@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Car.belongsTo(models.Admin)
     }
   }
   Car.init({
